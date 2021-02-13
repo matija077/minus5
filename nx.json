@@ -17,6 +17,7 @@
   },
   "projects": {
     "nhl": { "tags": [] },
-    "nhl-e2e": { "tags": [], "implicitDependencies": ["nhl"] }
+    "nhl-e2e": { "tags": [], "implicitDependencies": ["nhl"] },
+    "api": { "tags": [] }
   }
 }

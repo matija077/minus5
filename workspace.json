@@ -28,15 +28,22 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/nhl",
             "index": "apps/nhl/src/index.html",
             "main": "apps/nhl/src/main.tsx",
             "polyfills": "apps/nhl/src/polyfills.ts",
             "tsConfig": "apps/nhl/tsconfig.app.json",
-            "assets": ["apps/nhl/src/favicon.ico", "apps/nhl/src/assets"],
-            "styles": ["apps/nhl/src/styles.css"],
+            "assets": [
+              "apps/nhl/src/favicon.ico",
+              "apps/nhl/src/assets"
+            ],
+            "styles": [
+              "apps/nhl/src/styles.css"
+            ],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -68,7 +75,8 @@
         "serve": {
           "executor": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "nhl:build"
+            "buildTarget": "nhl:build",
+            "proxyConfig": "apps/nhl/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -79,12 +87,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/nhl/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/nhl/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/nhl"],
+          "outputs": [
+            "coverage/apps/nhl"
+          ],
           "options": {
             "jestConfig": "apps/nhl/jest.config.js",
             "passWithNoTests": true
@@ -113,7 +125,68 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/nhl-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/nhl-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": [
+              "apps/api/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "api:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/api/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/api"
+          ],
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
