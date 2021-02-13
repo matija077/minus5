@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { AppBarStyled, MainContainerStyled, GridListStyled } from './home.page.styles';
 import { useError } from '../../utility/customHooks';
-import Spinner from '../../components/spinner/spinner.component';
 
-type TeamType = {
-    id: number,
-    name: string,
-    venue: string,
-    city: string
-}
+import { AppBarStyled, MainContainerStyled } from './home.page.styles';
+import List from '@material-ui/core/List';
+
+import Spinner from '../../components/spinner/spinner.component';
+import TeamRow from '../../components/team-row/teamRow.component';
+import { TeamType } from '../../utility/types';
 
 function HomePage() {
     const [error, setError] = useError();
     const [teams, setTeams] = useState<Array<TeamType>>();
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         fetch("http://localhost:3333/api/teams").then(function resolved(result) {
@@ -39,10 +37,14 @@ function HomePage() {
             <AppBarStyled>
                 NHL TEAMS
             </AppBarStyled>
-            {loading
-                ? <GridListStyled>
-
-                </GridListStyled>
+            {!loading
+                ? <List>
+                    {
+                        teams.map((team) => {
+                            return <TeamRow key={team.id} {...team}></TeamRow>
+                        })
+                    }
+                </List>
                 : <Spinner />}
         </MainContainerStyled>
     );

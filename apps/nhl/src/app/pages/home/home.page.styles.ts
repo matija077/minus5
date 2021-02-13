@@ -13,7 +13,7 @@ const AppBarStyled = styled(AppBar)`
 `;
 
 const GridListStyled = styled(GridList)`
-
+    
 `;
 
 export {
