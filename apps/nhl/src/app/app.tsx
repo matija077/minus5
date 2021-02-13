@@ -1,5 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/styles';
+
+import theme from './utility/theme';
 
 import Home from './pages/home/home.page';
 import TeamStats from './pages/teams_stats/team_stats'
@@ -7,24 +10,26 @@ import TeamStats from './pages/teams_stats/team_stats'
 export function App() {
   return (
     <React.StrictMode>
-      <Router>
-        <Switch>
-          <Route
-            path="/"
-            exact
-          >
-            <Home />
-          </Route>
-          <Route
-            path="/team/:id"
-          >
-            <TeamStats />
-          </Route>
-          <Route>
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Switch>
+            <Route
+              path="/"
+              exact
+            >
+              <Home />
+            </Route>
+            <Route
+              path="/team/:id"
+            >
+              <TeamStats />
+            </Route>
+            <Route>
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </ThemeProvider>
     </React.StrictMode>
   );
 }
