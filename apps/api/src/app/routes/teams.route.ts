@@ -7,7 +7,7 @@ router
     .get("/teams", async function getTeams(req: express.Request, res: express.Response) {
         try {
             const teams = await getTeamsService();
-            console.log(teams);
+            //console.log(teams);
             res.json(teams);
         }
         catch(error: any) {
