@@ -1,12 +1,37 @@
 import React from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import styles from './app.module.css';
-
-import { ReactComponent as Logo } from './logo.svg';
-import star from './star.svg';
+import Home from './pages/home/home.page';
+import TeamStats from './pages/teams_stats/team_stats'
 
 export function App() {
   return (
+    <React.StrictMode>
+      <Router>
+        <Switch>
+          <Route
+            path="/"
+            exact
+          >
+            <Home />
+          </Route>
+          <Route
+            path="/team/:id"
+          >
+            <TeamStats />
+          </Route>
+          <Route>
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+    </React.StrictMode>
+  );
+}
+
+export default App;
+
+ /*return (
     <div className={styles.app}>
       <header className="flex">
         <Logo width="75" height="75" />
@@ -98,6 +123,4 @@ nx affected:e2e
       </main>
     </div>
   );
-}
-
-export default App;
+}*/
