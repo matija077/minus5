@@ -1,3 +1,4 @@
+import * as path from 'path';
 const PORT = 3333;
 
 const returnCodes = {
@@ -5,4 +6,15 @@ const returnCodes = {
     'ok': 200,
 };
 
-export { PORT, returnCodes };
+const fileNames = {
+    location: "./apps/api/data/",
+    prefix:"nhl-",
+    teams: "teams",
+    suffix: ".json",
+    getFileName (name?: string)  {
+        const fileName = path.normalize(`${this.location}${this.prefix}${name || this.teams}${this.suffix}`);
+        return fileName;
+    }
+}
+
+export { PORT, returnCodes, fileNames };
