@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AppBarStyled, MainContainerStyled, GridListStyled } from './home.page.styles';
 import { useError } from '../../utility/customHooks';
+import Spinner from '../../components/spinner/spinner.component';
 
 type TeamType = {
     id: number,
@@ -38,11 +39,11 @@ function HomePage() {
             <AppBarStyled>
                 NHL TEAMS
             </AppBarStyled>
-            {!loading
+            {loading
                 ? <GridListStyled>
 
                 </GridListStyled>
-                : "Loading"}
+                : <Spinner />}
         </MainContainerStyled>
     );
 }
