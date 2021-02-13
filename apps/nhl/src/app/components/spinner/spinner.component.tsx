@@ -6,8 +6,6 @@ type SpinnerPropsType = {
 
 }
 
-
-
 function Spinner(props: SpinnerPropsType) {
     return (
         <SpinnerContainerStyles>

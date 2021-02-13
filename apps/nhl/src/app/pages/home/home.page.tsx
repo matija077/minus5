@@ -34,7 +34,9 @@ function HomePage() {
 
     return (
         <MainContainerStyled>
-            <AppBarStyled>
+            <AppBarStyled
+                color={"inherit"}
+            >
                 NHL TEAMS
             </AppBarStyled>
             {!loading
