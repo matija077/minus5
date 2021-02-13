@@ -14,7 +14,16 @@ async function getTeams(): Promise<any> {
 
 function parseTeams(nonParsedTeams: any): any {
     //console.log(nonParsedTeams);
-    const teams = nonParsedTeams;
+    const teamsArray = nonParsedTeams.teams;
+    const teams = teamsArray.map((team) => {
+        return {
+            id: team.id,
+            name: team.name,
+            venue: team.venue.name,
+            location: team.locationName
+        }
+    });
+
 
     return teams;
 }
