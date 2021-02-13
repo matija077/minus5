@@ -1,17 +1,23 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import * as express from 'express';
+import configServerMiddlewares from './app/config/serverConfig';
+import teamsRoute from './app/routes/teams.route';
+import { PORT } from './app/config/utils';
 
+// initialize env if needed
+
+// and set ports
+const port = process.env.port || PORT;
+
+// initialize necessary apps
 const app = express();
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to api!' });
-});
+// middlewares for all routes
+configServerMiddlewares(app);
 
-const port = process.env.port || 3333;
+
+app.use('/api', teamsRoute);
+
+
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/api`);
 });
