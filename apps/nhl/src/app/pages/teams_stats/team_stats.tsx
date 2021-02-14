@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import Spinner from '../../components/spinner/spinner.component';
 import { useFetch } from '../../utility/customHooks';
 import { TeamDetailsType } from '../../utility/types';
 
@@ -18,6 +19,11 @@ function TeamStats(props: any) {
         <>
             <div>{passedState.name}</div>
             <div>{passedState.venue}/{passedState.city}</div>
+            {
+               !loading
+                    ? teamDetails.stats.wins
+                    : <Spinner></Spinner>
+            }
         </>
     );
 }
