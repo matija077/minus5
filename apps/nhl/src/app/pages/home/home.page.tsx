@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 
 import { AppBarStyled, MainContainerStyled } from './home.page.styles';
 import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
 
 import Spinner from '../../components/spinner/spinner.component';
 import TeamRow from '../../components/team-row/teamRow.component';
@@ -16,16 +17,16 @@ function HomePage() {
 
     return (
         <MainContainerStyled>
-            <AppBarStyled
-                color={"inherit"}
-            >
-                NHL TEAMS
-            </AppBarStyled>
             {!loading
                 ? <List>
                     {
                         teams.map((team) => {
-                            return <TeamRow key={team.id} {...team}></TeamRow>
+                            return (
+                                <Fragment key={team.id}>
+                                    <TeamRow {...team}></TeamRow>
+                                    <Divider></Divider>
+                                </Fragment>
+                            )
                         })
                     }
                 </List>

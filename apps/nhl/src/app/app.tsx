@@ -1,7 +1,9 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Header from './components/Header/header.component';
 import { ThemeProvider } from '@material-ui/styles';
 import { StylesProvider } from '@material-ui/core/styles';
+
 
 import theme from './utility/theme';
 
@@ -14,6 +16,7 @@ export function App() {
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
           <Router>
+            <Header></Header>
             <Switch>
               <Route
                 path="/"
