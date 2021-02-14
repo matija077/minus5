@@ -15,7 +15,10 @@ function TeamRow({ location, id, name, venue }: TeamType) {
     const classes = useStyles();
 
     return (
-        <Link to={`/team/${id}`}>
+        <Link to={{
+            pathname:`/team/${id}`,
+            state: {name, venue, location}
+        }}>
             <RowStyles button>
                     <ListItemTextStyles style={{backgroundColor: color}} primary={name} secondary={location + "/" + venue} classes={{root: classes.root}} ></ListItemTextStyles>
             </RowStyles>
