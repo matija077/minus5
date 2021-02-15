@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0.5),
       textAlign: 'center'
     },
+    typography: {
+        color: theme.palette.primary.main
+    }
   }),
 );
 
@@ -37,7 +40,7 @@ function TeamStats(props: any) {
         <Grid container spacing={2} className={classes.grid}>
             <Grid item xs={12}>
                 <Paper>
-                    <Typography variant={"h6"}>{passedState.name}</Typography>
+                    <Typography variant={"h6"} className={classes.typography} style={{color: "white"}}>{passedState.name}</Typography>
                     <Typography variant={"subtitle1"}>{venueCity}</Typography>
                 </Paper>
             </Grid>

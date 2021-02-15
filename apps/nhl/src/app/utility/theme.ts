@@ -12,6 +12,11 @@ const theme = (darkMode: boolean) => createMuiTheme({
         },
         type: darkMode ? "dark" : "light"
     },
+    typography: {
+        h6: {
+            color: darkMode && "#FFFFFF"
+        }
+    },
     spacing: factor => `${factor}rem`,
     overrides: {
         MuiSwitch: {
