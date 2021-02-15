@@ -6,21 +6,27 @@ type TeamType = {
 }
 
 type TeamDetailsType = {
-    stats: {
-        wins: number,
-        loses: number,
-        points: number,
-        goalsPerGame: number
-    },
-    ranks: {
-        wins: string,
-        loses: string,
-        points: string,
-        goalsPerGame: string
-    }
+    stats: StatsType,
+    ranks: RanksType
+}
+
+type StatsType = {
+    wins: number,
+    loses: number,
+    points: number,
+    goalsPerGame: number
+}
+
+type RanksType = {
+    wins: string,
+    loses: string,
+    points: string,
+    goalsPerGame: string
 }
 
 export {
     TeamType,
-    TeamDetailsType
+    TeamDetailsType,
+    StatsType,
+    RanksType
 }
