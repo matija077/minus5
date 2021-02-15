@@ -21,7 +21,7 @@ function TeamRow({ location, id, name, venue }: TeamType) {
             state: {name, venue, location}
         }}>
             <RowStyles button>
-                    <ListItemTextStyles style={{backgroundColor: "primary"}} primary={name} secondary={secondary} classes={{root: classes.root}} ></ListItemTextStyles>
+                    <ListItemTextStyles  primary={name} secondary={secondary}  ></ListItemTextStyles>
             </RowStyles>
         </Link>
     );

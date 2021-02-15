@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from './components/Header/header.component';
 import { ThemeProvider } from '@material-ui/styles';
 import { StylesProvider } from '@material-ui/core/styles';
 
 
-import theme from './utility/theme';
+import createTheme from './utility/theme';
 
 import Home from './pages/home/home.page';
 import TeamStats from './pages/teams_stats/team_stats'
 
 export function App() {
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  function toggleDarkMode() {
+      setDarkMode((state) => !state);
+  }
+
+  const theme = createTheme(darkMode);
+  console.log(theme);
+
   return (
     <React.StrictMode>
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
           <Router>
-            <Header></Header>
+            <Header
+              toggleDarkMode={toggleDarkMode}
+              darkMode={darkMode}
+            ></Header>
             <Switch>
               <Route
                 path="/"

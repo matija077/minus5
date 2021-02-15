@@ -1,15 +1,16 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = (darkMode: boolean) => createMuiTheme({
     palette: {
         primary: {
 
-            main: '#131314 ',
+            main: darkMode? '#131314': "#FFFFFF"
 
         },
         secondary: {
-            main: '#D80B11',
+            main: "#D80B11",
         },
+        type: darkMode ? "dark" : "light"
     },
     spacing: factor => `${factor}rem`,
     overrides: {
@@ -22,5 +23,7 @@ const theme = createMuiTheme({
         }
     }
 });
+
+
 
 export default theme;
