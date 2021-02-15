@@ -25,7 +25,10 @@ function Header(props) {
     //const history = useHistory();
     console.log(props);
     const [darkMode, setDarkMode] = useState<boolean>(false);
-    const toggleDarkMode = () => setDarkMode((state) => !state);
+
+    function toggleDarkMode() {
+        setDarkMode((state) => !state);
+    }
 
     return (
         <AppBar
@@ -41,7 +44,6 @@ function Header(props) {
                 <FormControlLabel
                 control={<ToggleDarkModeSwitch checked={darkMode} onChange={toggleDarkMode} aria-label="dark mode switch" color="primary"/>}
                 label={darkMode ? 'Dark' : 'Normal'}
-                text
             />
             </Toolbar>
         </AppBar>

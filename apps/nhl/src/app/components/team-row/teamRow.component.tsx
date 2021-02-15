@@ -13,6 +13,7 @@ const useStyles = makeStyles({
 function TeamRow({ location, id, name, venue }: TeamType) {
     const color = id % 2 === 0 ? "primary" : "inherit";
     const classes = useStyles();
+    const secondary = location + "/" + venue;
 
     return (
         <Link to={{
@@ -20,7 +21,7 @@ function TeamRow({ location, id, name, venue }: TeamType) {
             state: {name, venue, location}
         }}>
             <RowStyles button>
-                    <ListItemTextStyles style={{backgroundColor: "primary"}} primary={name} secondary={location + "/" + venue} classes={{root: classes.root}} ></ListItemTextStyles>
+                    <ListItemTextStyles style={{backgroundColor: "primary"}} primary={name} secondary={secondary} classes={{root: classes.root}} ></ListItemTextStyles>
             </RowStyles>
         </Link>
     );
