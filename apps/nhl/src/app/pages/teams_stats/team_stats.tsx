@@ -17,6 +17,7 @@ import List from '@material-ui/core/List';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
+import Box from '@material-ui/core/Box';
 
 const url = "http:///localhost:3333/api/teams";
 
@@ -24,7 +25,14 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     grid: {
       padding: theme.spacing(0.5),
-      textAlign: 'center'
+      textAlign: 'center',
+    },
+    box: {
+        width: "100vw"
+    },
+    box2: {
+        width: "50vw",
+        display: "inline-block"
     }
   }),
 );
@@ -93,39 +101,42 @@ function TeamStats(props: any) {
             </Grid>
             {
                !loading
-                    ? mobile
-                        ? <Grid container spacing={2}>
-                            <List>
-                                <ListItem button onClick={handleClickExpand} data-type={dataTypes.stats}>
-                                    <ListItemText primary="Stats" />
-                                    {openStats ? <ExpandLess /> : <ExpandMore />}
-                                </ListItem>
-                                <Collapse in={openStats} timeout="auto">
+                    ? <Box className={classes.box}>
+                        { mobile
+                            ? <Grid container spacing={2} className={classes.grid}>
+                                <List>
+                                    <ListItem button onClick={handleClickExpand} data-type={dataTypes.stats}>
+                                        <ListItemText primary="Stats" />
+                                        {openStats ? <ExpandLess /> : <ExpandMore />}
+                                    </ListItem>
+                                    <Collapse in={openStats} timeout="auto">
+                                        <TeamDetailsItem data={teamDetails.stats} />
+                                    </Collapse>
+                                    <ListItem button onClick={handleClickExpand} data-type={dataTypes.rankings}>
+                                        <ListItemText primary="Rankings" />
+                                        {openRankings ? <ExpandLess /> : <ExpandMore />}
+                                    </ListItem>
+                                    <Collapse in={openRankings} timeout="auto">
+                                        <TeamDetailsItem data={teamDetails.ranks} />
+                                    </Collapse>
+                                </List>
+                            </Grid>
+                            : <Grid container spacing={1}>
+                                <Grid item xs={6}>
+                                    <Paper>
+                                        <Typography variant={"h6"}>Stats</Typography>
+                                    </Paper>
                                     <TeamDetailsItem data={teamDetails.stats} />
-                                </Collapse>
-                                <ListItem button onClick={handleClickExpand} data-type={dataTypes.rankings}>
-                                    <ListItemText primary="Rankings" />
-                                    {openRankings ? <ExpandLess /> : <ExpandMore />}
-                                </ListItem>
-                                <Collapse in={openRankings} timeout="auto">
-                                    <TeamDetailsItem data={teamDetails.ranks} />
-                                </Collapse>
-                        </List>
-                        </Grid>
-                        : <Grid container spacing={2}>
-                            <Grid item xs={6}>
-                                <Paper>
-                                    <Typography variant={"h6"}>Stats</Typography>
-                                </Paper>
-                                <TeamDetailsItem data={teamDetails.stats} />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Paper>
+                                        <Typography variant={"h6"}>Rankings</Typography>
+                                    </Paper>
+                                    <TeamDetailsItem data={teamDetails.ranks}></TeamDetailsItem>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={6}>
-                                <Paper>
-                                    <Typography variant={"h6"}>Rankings</Typography>
-                                </Paper>
-                                <TeamDetailsItem data={teamDetails.ranks}></TeamDetailsItem>
-                            </Grid>
-                        </Grid>
+                        }
+                    </Box>
                     : <Spinner></Spinner>
             }
         </Grid>
