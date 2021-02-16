@@ -4,18 +4,13 @@ const theme = (darkMode: boolean) => createMuiTheme({
     palette: {
         primary: {
 
-            main: darkMode? '#131314': "#FFFFFF"
+            main: "#FFFFFF"
 
         },
         secondary: {
             main: "#D80B11",
         },
         type: darkMode ? "dark" : "light"
-    },
-    typography: {
-        h6: {
-            color: darkMode && "#FFFFFF"
-        }
     },
     spacing: factor => `${factor}rem`,
     overrides: {
@@ -29,6 +24,15 @@ const theme = (darkMode: boolean) => createMuiTheme({
     }
 });
 
+// some of the colors used by material fin dark mode
+const darkModeColors = {
+    darkGrey: "#303030",
+    lightGrey: "#424242",
+    white: "#FFFFFF"
+}
 
+export {
+    darkModeColors
+}
 
 export default theme;

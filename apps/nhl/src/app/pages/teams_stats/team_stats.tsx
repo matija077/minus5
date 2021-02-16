@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import Spinner from '../../components/spinner/spinner.component';
 import { useFetch } from '../../utility/customHooks';
@@ -25,9 +25,6 @@ const useStyles = makeStyles((theme: Theme) =>
     grid: {
       padding: theme.spacing(0.5),
       textAlign: 'center'
-    },
-    typography: {
-        color: theme.palette.primary.main
     }
   }),
 );
@@ -49,6 +46,22 @@ function TeamStats(props: any) {
     const urlWithParams = url + "/" + id;
     const [teamDetails, loading] = useFetch<TeamDetailsType>(urlWithParams);
 
+    let landscapeM = window.matchMedia('(max-width: 1023px) and (orientation: landscape)' );
+    let portraitM = window.matchMedia('(max-width: 600px) and (orientation: portrait)' );
+
+    useEffect(() => {
+        function captureScreenOrientationChange(event: any) {
+            console.log(landscapeM.matches);
+            console.log(portraitM.matches)
+        }
+
+        window.addEventListener("resize", captureScreenOrientationChange);
+
+        return () => {
+            window.removeEventListener("resize", captureScreenOrientationChange);
+        }
+    }, [])
+
     // handlers
     function handleClickExpand(event: any) {
         const type = event.currentTarget.dataset.type;
@@ -66,12 +79,15 @@ function TeamStats(props: any) {
     const mobileLandscape = useMediaQuery('(max-width: 1023px) and (orientation: landscape)');
     const mobilePortrait = useMediaQuery('(max-width: 600px) and (orientation: portrait)');
     const mobile = mobilePortrait || mobileLandscape;
+    console.log(mobileLandscape);
+    console.log(mobilePortrait);
+    console.log(mobile);
 
     return (
         <Grid container spacing={2} className={classes.grid}>
             <Grid item xs={12}>
                 <Paper>
-                    <Typography variant={"h6"} className={classes.typography}>{passedState.name}</Typography>
+                    <Typography variant={"h6"}>{passedState.name}</Typography>
                     <Typography variant={"subtitle1"}>{venueCity}</Typography>
                 </Paper>
             </Grid>

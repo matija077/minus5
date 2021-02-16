@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles,Theme } from '@material-ui/core/styles';
+import { darkModeColors } from '../../utility/theme';
 
 type HeaderPropsType = {
     children: never[],
@@ -18,11 +19,11 @@ type HeaderPropsType = {
 const ToggleDarkModeSwitch = withStyles((theme: Theme) => ({
     switchBase: {
         '&$checked + $track': {
-            backgroundColor: "#ffffff",
+            backgroundColor: darkModeColors.white,
             opacity: 1
         },
         '&$checked': {
-            color: theme.palette.primary.main
+            color: darkModeColors.lightGrey
         }
     },
     checked: {},

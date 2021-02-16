@@ -28,7 +28,7 @@ function HomePage() {
     const classes = useStyles();
 
     return (
-        <MainContainerStyled maxWidth={false} className={classes.root}>
+        <MainContainerStyled maxWidth={false}>
             {!loading
                 ? <List>
                     {

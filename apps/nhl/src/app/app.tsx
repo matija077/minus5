@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from './components/Header/header.component';
 import { ThemeProvider } from '@material-ui/styles';
 import { StylesProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { makeStyles, createStyles, Theme  } from '@material-ui/core/styles';
 
 
 import createTheme from './utility/theme';
@@ -10,8 +12,18 @@ import createTheme from './utility/theme';
 import Home from './pages/home/home.page';
 import TeamStats from './pages/teams_stats/team_stats'
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      backgroundColor: "primary"
+    }
+  }),
+);
+
+
 export function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
+  const classes = useStyles();
 
   function toggleDarkMode() {
       setDarkMode((state) => !state);
@@ -24,28 +36,30 @@ export function App() {
     <React.StrictMode>
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <Router>
-            <Header
-              toggleDarkMode={toggleDarkMode}
-              darkMode={darkMode}
-            ></Header>
-            <Switch>
-              <Route
-                path="/"
-                exact
-              >
-                <Home />
-              </Route>
-              <Route
-                path="/team/:id"
-              >
-                <TeamStats />
-              </Route>
-              <Route>
-                <Home />
-              </Route>
-            </Switch>
-          </Router>
+          <CssBaseline classes={classes.root}>
+            <Router>
+              <Header
+                toggleDarkMode={toggleDarkMode}
+                darkMode={darkMode}
+              ></Header>
+              <Switch>
+                <Route
+                  path="/"
+                  exact
+                >
+                  <Home />
+                </Route>
+                <Route
+                  path="/team/:id"
+                >
+                  <TeamStats />
+                </Route>
+                <Route>
+                  <Home />
+                </Route>
+              </Switch>
+            </Router>
+          </CssBaseline>
         </ThemeProvider>
       </StylesProvider>
     </React.StrictMode>
