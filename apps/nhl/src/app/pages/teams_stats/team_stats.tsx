@@ -70,6 +70,7 @@ function TeamStats(props: any) {
         }
     }, [])
 
+
     // handlers
     function handleClickExpand(event: any) {
         const type = event.currentTarget.dataset.type;
@@ -80,6 +81,9 @@ function TeamStats(props: any) {
             setOpenRankings(rankings => !rankings);
         }
     }
+
+
+
 
     // component related data
     const venueCity = passedState.venue + "/" + passedState.location;

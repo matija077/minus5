@@ -8,6 +8,7 @@ import { makeStyles, createStyles, Theme  } from '@material-ui/core/styles';
 
 
 import createTheme from './utility/theme';
+import { useContextHelper } from './utility/customHooks';
 
 import Home from './pages/home/home.page';
 import TeamStats from './pages/teams_stats/team_stats'
@@ -19,7 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   }),
 );
-
 
 export function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
@@ -38,10 +38,15 @@ export function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline classes={classes.root}>
             <Router>
-              <Header
-                toggleDarkMode={toggleDarkMode}
-                darkMode={darkMode}
-              ></Header>
+              <Route
+                children={({location}) => {
+                  console.log(location);
+                  return (<Header
+                    toggleDarkMode={toggleDarkMode}
+                    darkMode={darkMode}
+                  ></Header>)
+                }}
+              />
               <Switch>
                 <Route
                   path="/"

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 function useError() {
     const [error, setError] = useState<any>(undefined);
@@ -9,6 +9,10 @@ function useError() {
 
     return [error, setError];
 }
+
+function useContextHelper<T>(context: React.Context<T>) {
+    return useContext(context);
+  }
 
 function useFetch<T>(url: string): [T, boolean] {
     const [error, setError] = useError();
@@ -39,6 +43,7 @@ function useFetch<T>(url: string): [T, boolean] {
 
 export {
     useError,
-    useFetch
+    useFetch,
+    useContextHelper
 }
 
