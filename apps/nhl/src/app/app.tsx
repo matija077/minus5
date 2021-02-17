@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import Header from './components/Header/header.component';
 import { ThemeProvider } from '@material-ui/styles';
 import { StylesProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { makeStyles, createStyles, Theme  } from '@material-ui/core/styles';
+import ErrorBoundary from './pages/error/error.page';
 
 
 import createTheme from './utility/theme';
@@ -44,31 +45,33 @@ export function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline classes={classes.root}>
             <Router>
-              <Route
-                children={({location, history}) => {
-                  console.log(location);
-                  return (<Header
-                    toggleDarkMode={toggleDarkMode}
-                    darkMode={darkMode}
-                  ></Header>)
-                }}
-              />
-              <Switch>
+              <ErrorBoundary>
                 <Route
-                  path="/"
-                  exact
-                >
-                  <Home teams={teams} loading={loading} />
-                </Route>
-                <Route
-                  path="/team/:id"
-                >
-                  <TeamStats />
-                </Route>
-                <Route>
-                  <Home />
-                </Route>
-              </Switch>
+                  children={({location, history}) => {
+                    console.log(location);
+                    return (<Header
+                      toggleDarkMode={toggleDarkMode}
+                      darkMode={darkMode}
+                    ></Header>)
+                  }}
+                />
+                <Switch>
+                  <Route
+                    path="/team/:id"
+                    exact                  >
+                    <TeamStats />
+                  </Route>
+                  <Route
+                    path="/"
+                    exact
+                  >
+                    <Home teams={teams} loading={loading} />
+                  </Route>
+                  <Route>
+                    <Redirect to="/"></Redirect>
+                  </Route>
+                </Switch>
+              </ErrorBoundary>
             </Router>
           </CssBaseline>
         </ThemeProvider>
