@@ -11,7 +11,10 @@ import createTheme from './utility/theme';
 import { useContextHelper } from './utility/customHooks';
 
 import Home from './pages/home/home.page';
-import TeamStats from './pages/teams_stats/team_stats'
+import TeamStats from './pages/teams_stats/team_stats';
+
+import { TeamType } from './utility/types';
+import { useFetch } from './utility/customHooks';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -21,8 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const url = "http:///localhost:3333/api/teams";
+
 export function App() {
   const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [teams, loading] = useFetch<Array<TeamType>>(url);
   const classes = useStyles();
 
   function toggleDarkMode() {
@@ -39,7 +45,7 @@ export function App() {
           <CssBaseline classes={classes.root}>
             <Router>
               <Route
-                children={({location}) => {
+                children={({location, history}) => {
                   console.log(location);
                   return (<Header
                     toggleDarkMode={toggleDarkMode}
@@ -52,7 +58,7 @@ export function App() {
                   path="/"
                   exact
                 >
-                  <Home />
+                  <Home teams={teams} loading={loading} />
                 </Route>
                 <Route
                   path="/team/:id"

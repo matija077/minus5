@@ -10,9 +10,6 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Spinner from '../../components/spinner/spinner.component';
 import TeamRow from '../../components/team-row/teamRow.component';
 import { TeamType } from '../../utility/types';
-import { useFetch } from '../../utility/customHooks';
-
-const url = "http:///localhost:3333/api/teams";
 
 const useStyles = makeStyles((theme: Theme) => {
     console.log(theme.palette.primary.main);
@@ -23,8 +20,13 @@ const useStyles = makeStyles((theme: Theme) => {
   }) }
 )
 
-function HomePage() {
-    const [teams, loading] = useFetch<Array<TeamType>>(url);
+type HomePagePropsType = {
+    teams: Array<TeamType>,
+    loading: boolean
+}
+
+function HomePage({ teams, loading }) {
+
     const classes = useStyles();
 
     return (
