@@ -12,7 +12,6 @@ import TeamRow from '../../components/team-row/teamRow.component';
 import { TeamType } from '../../utility/types';
 
 const useStyles = makeStyles((theme: Theme) => {
-    console.log(theme.palette.primary.main);
   return createStyles({
     root: {
       backgroundColor: theme.palette.primary.main,

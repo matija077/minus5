@@ -24,7 +24,6 @@ function useFetch<T>(url: string): [T, boolean] {
             return result.json();
         })
         .then(function data(data: any) {
-            console.log(data);
             setTeams(data);
         })
         .catch(function rejected(error: any) {

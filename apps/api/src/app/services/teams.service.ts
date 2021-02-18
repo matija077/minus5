@@ -5,24 +5,19 @@ import * as path from 'path';
 
 function fileReader(fileName: string): Promise<unknown> {
     return new Promise((resolve, reject) => {
-        console.log(path.resolve(process.env.LOCATION, fileName));
         fs.readFile(path.resolve(process.env.LOCATION, fileName), (error, data) => {
             if (error) {
                 reject(error);
             }
-            //console.log(fileNames.getFileName());
-            //console.log(process.env.LOCATION);
-            console.log(data);
 
             const teams = JSON.parse(data.toString());
-            //console.log(teams);
+
             resolve(teams)
         });
     })
 }
 
 function parseTeams(nonParsedTeams: any): Array<TeamType> {
-    //console.log(nonParsedTeams);
     const teamsArray = nonParsedTeams.teams;
     const teams = teamsArray.map((team) => {
         return {
@@ -40,7 +35,6 @@ function parseTeamDetail(nonParsedTeamDetails: any): TeamDetailsType {
     const regularStats = nonParsedTeamDetails.stats[0].splits[0];
     const regularRanks = nonParsedTeamDetails.stats[1].splits[0];
 
-    //console.log(regularStats);
     const regularStatsParsed = {
         loses: regularStats.stat.losses,
         points: regularStats.stat.pts,

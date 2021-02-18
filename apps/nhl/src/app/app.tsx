@@ -37,7 +37,6 @@ export function App() {
   }
 
   const theme = createTheme(darkMode);
-  console.log(theme);
 
   return (
     <React.StrictMode>
@@ -48,7 +47,6 @@ export function App() {
               <ErrorBoundary>
                 <Route
                   children={({location, history}) => {
-                    console.log(location);
                     return (<Header
                       toggleDarkMode={toggleDarkMode}
                       darkMode={darkMode}

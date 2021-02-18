@@ -8,7 +8,6 @@ router
     .get("/teams", async function getTeams(req: express.Request, res: express.Response) {
         try {
             const teams = await getTeamsService();
-            //console.log(teams);
             res.json(teams);
         }
         catch(error: any) {
@@ -21,7 +20,7 @@ router
         const id = req.params.id;
 
         try {
-            const teamDetails = await getTeamDetails(id);
+            const teamDetails = await getTeamDetails(+id);
             res.json(teamDetails);
         } catch(error: any) {
             console.log(error);

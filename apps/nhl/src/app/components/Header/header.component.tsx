@@ -21,7 +21,6 @@ type HeaderPropsType = {
 }
 
 const useStyles = makeStyles((theme: Theme) => {
-    console.log(theme.palette.primary.main);
   return createStyles({
     root: {
       color: theme.palette.primary.main,
@@ -52,7 +51,6 @@ function Header({ toggleDarkMode, darkMode }: HeaderPropsType) {
 
     useEffect(() => {
         const unlisten = history.listen(location => {
-            console.log(location);
             if (location.pathname.startsWith("/team")) {
                 setRenderBackButton(true);
             } else {
@@ -62,6 +60,8 @@ function Header({ toggleDarkMode, darkMode }: HeaderPropsType) {
 
         return () => unlisten();
     }, [renderBackButton, history])
+
+
 
     function onBackButtonClickHandler(event: any) {
         history.goBack();
@@ -78,12 +78,12 @@ function Header({ toggleDarkMode, darkMode }: HeaderPropsType) {
                 <Grid justify="center" container>
                     <Grid item xs={1}>
                         {
-                            renderBackButton && <IconButton onClick={onBackButtonClickHandler} color={"inherit"}>
+                           renderBackButton && <IconButton onClick={onBackButtonClickHandler} color={"inherit"} size={"small"}>
                                 <ArrowBackIcon></ArrowBackIcon>
                             </IconButton>
                         }
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={10}>
                         <Typography variant={"h5"}>
                             NHL TEAMS
                         </Typography>
@@ -91,7 +91,7 @@ function Header({ toggleDarkMode, darkMode }: HeaderPropsType) {
                     <Grid item xs={1}>
                         <FormControlLabel
                             control={<ToggleDarkModeSwitch checked={darkMode} onChange={toggleDarkMode} aria-label="dark mode switch"/>}
-                            label={darkMode ? 'Dark' : 'Normal'}
+                            label={undefined}
                         />
                     </Grid>
                 </Grid>

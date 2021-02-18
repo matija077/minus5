@@ -14,25 +14,27 @@ type TeamDetailsRowPropsType = {
     data: RanksType | StatsType,
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: "primary"
+    },
+    listItem: {
+        display: "inline-block",
+        margin: `0 ${theme.spacing()} 0 ${theme.spacing()}`
     }
-})
+}))
 
 function TeamDetailsRow({ data }: TeamDetailsRowPropsType) {
-    console.log(data);
+    const classes = useStyles();
     return (
         <List>
             {
                 Object.entries(data).map((item, index) => (
                     <Fragment key={index}>
                         <ListItem>
-                            <Box component="span" ml={1}>
-                                <Grid>
-                                    <ListItemText>{item[0]}</ListItemText>
-                                    <ListItemText>{item[1]}</ListItemText>
-                                </Grid>
+                            <Box component="span" ml={2}>
+                                    <ListItemText className={classes.listItem}>{item[0]}</ListItemText>
+                                    <ListItemText className={classes.listItem}>{item[1]}</ListItemText>
                             </Box>
                         </ListItem>
                         <Divider></Divider>

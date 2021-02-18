@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     grid: {
       padding: theme.spacing(0.5),
       textAlign: 'center',
+      margin: "unset",
     },
     box: {
         width: "100vw"
@@ -54,23 +55,6 @@ function TeamStats(props: any) {
     const urlWithParams = url + "/" + id;
     const [teamDetails, loading] = useFetch<TeamDetailsType>(urlWithParams);
 
-    let landscapeM = window.matchMedia('(max-width: 1023px) and (orientation: landscape)' );
-    let portraitM = window.matchMedia('(max-width: 600px) and (orientation: portrait)' );
-
-    useEffect(() => {
-        function captureScreenOrientationChange(event: any) {
-            console.log(landscapeM.matches);
-            console.log(portraitM.matches)
-        }
-
-        window.addEventListener("resize", captureScreenOrientationChange);
-
-        return () => {
-            window.removeEventListener("resize", captureScreenOrientationChange);
-        }
-    }, [])
-
-
     // handlers
     function handleClickExpand(event: any) {
         const type = event.currentTarget.dataset.type;
@@ -82,18 +66,12 @@ function TeamStats(props: any) {
         }
     }
 
-
-
-
     // component related data
     const venueCity = passedState.venue + "/" + passedState.location;
 
     const mobileLandscape = useMediaQuery('(max-width: 1023px) and (orientation: landscape)');
     const mobilePortrait = useMediaQuery('(max-width: 600px) and (orientation: portrait)');
     const mobile = mobilePortrait || mobileLandscape;
-    console.log(mobileLandscape);
-    console.log(mobilePortrait);
-    console.log(mobile);
 
     return (
         <Grid container spacing={2} className={classes.grid}>
@@ -107,7 +85,7 @@ function TeamStats(props: any) {
                !loading
                     ? <Box className={classes.box}>
                         { mobile
-                            ? <Grid container spacing={2} className={classes.grid}>
+                            ? <Grid item className={classes.grid}>
                                 <List>
                                     <ListItem button onClick={handleClickExpand} data-type={dataTypes.stats}>
                                         <ListItemText primary="Stats" />
