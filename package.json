@@ -1,11 +1,11 @@
 {
-  "name": "minus5",
-  "version": "0.0.0",
+  "name": "nhl-teams-minus5",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "dev": "concurrently \"npm start api\" \"npm start nhl\"",
     "nx": "nx",
-    "start": "nx serve",
+    "start": "nx serve api",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
@@ -26,7 +26,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",

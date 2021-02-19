@@ -4,8 +4,8 @@ import * as cors from 'cors';
 import dotenv from "dotenv";
 
 function configServerMiddlewares(app: express.Application) {
-    app.use(helmet());
-    app.use(cors());
+    //app.use(helmet());
+    //app.use(cors());
     //app.use(express.urlencoded({extended: true}));
     app.use(express.json());
 }

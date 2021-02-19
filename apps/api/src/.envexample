@@ -1,0 +1,2 @@
+PORT="port"
+LOCATION="./apps/api/src/data/" | or your choice
