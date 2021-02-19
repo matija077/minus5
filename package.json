@@ -1,7 +1,7 @@
 {
   "name": "nhl-teams-minus5",
   "version": "1.0.0",
-  "license": "MIT",
+  "repository": "https://github.com/matija077/minus5",
   "scripts": {
     "dev": "concurrently \"npm start api\" \"npm start nhl\"",
     "nx": "nx",
