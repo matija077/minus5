@@ -14,8 +14,8 @@ function useContextHelper<T>(context: React.Context<T>) {
     return useContext(context);
   }
 
-function useFetch<T>(url: string): [T, boolean] {
-    const [error, setError] = useError();
+function useFetch<T>(url: string): [T | undefined, boolean] {
+    const [_, setError] = useError();
     const [data, setTeams] = useState<T>();
     const [loading, setLoading] = useState<boolean>(true);
 
